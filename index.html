@@ -826,12 +826,15 @@ section.has-bg.bg-light .promo-card {
    Responsive
    ========================================================================= */
 @media (max-width: 1024px) {
-  .hero .inner { grid-template-columns: 1fr; }
+  .hero { min-height: 580px; }
+  .hero .inner { grid-template-columns: 1fr; padding-top: 72px; padding-bottom: 130px; }
   .hero-art { margin-left: 0; max-width: 360px; }
   .pillars { grid-template-columns: 1fr; }
-  .split { grid-template-columns: 1fr; }
+  .split { grid-template-columns: 1fr; gap: 32px; }
   .ticket-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  section.block { padding: 80px 0; }
+  section.block.compact { padding: 64px 0; }
   /* Mid-desktop: two rows. Top row has From / swap / To, bottom row has
      Date and Submit stretched to full width. */
   .search-form {
@@ -842,8 +845,42 @@ section.has-bg.bg-light .promo-card {
   }
 }
 @media (max-width: 720px) {
+  .container { padding-inline: 18px; }
   .primary-nav { display: none; }
   .header-cta .btn-ghost { display: none; }
+  .brand small { display: none; }
+  .brand { font-size: 17px; gap: 10px; }
+  .brand-mark { width: 36px; height: 36px; }
+
+  /* Utility bar: keep language chooser compact, drop the "文字サイズ" label */
+  .utility-bar .lang span { display: none; }
+  .utility-bar .lang button { display: none; }
+
+  /* HERO: tighter padding + smaller min-height so the panel below is closer */
+  .hero { min-height: 560px; }
+  .hero .inner { padding-top: 56px; padding-bottom: 110px; gap: 20px; }
+  .hero h1  { font-size: 34px; line-height: 1.2; margin: 10px 0 14px; }
+  .hero p.lead { font-size: 15px; margin-bottom: 24px; }
+  .hero-stats { margin-top: 28px; padding-top: 18px; }
+  .hero-stats .num { font-size: 22px; }
+  .hero-stats .lbl { font-size: 11.5px; }
+  .hero-stats .s { padding-right: 12px; }
+
+  /* CTAs in hero stack on very narrow screens */
+  .hero .header-cta { flex-wrap: wrap; gap: 10px; }
+  .hero .btn { padding: 11px 18px; font-size: 13.5px; }
+
+  /* Search panel */
+  .search-panel { margin-top: -64px; margin-bottom: 0; padding: 18px; border-radius: 18px; }
+  .search-panel .tabs {
+    display: flex; flex-wrap: nowrap;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    max-width: 100%;
+  }
+  .search-panel .tabs::-webkit-scrollbar { display: none; }
+  .search-panel .tabs button { flex: 0 0 auto; white-space: nowrap; padding: 8px 14px; font-size: 12.5px; }
+
   .search-form {
     grid-template-columns: auto minmax(0, 1fr);
     grid-template-areas:
@@ -851,14 +888,67 @@ section.has-bg.bg-light .promo-card {
       "to   to"
       "date date"
       "swap submit";
-    row-gap: 12px;
+    gap: 12px;
   }
-  .search-form > .swap { align-self: end; justify-self: start; }
-  .search-form > .search-submit { width: 100%; padding: 13px 20px; }
-  .utility-bar .links { display: none; }
-  .safety-stats { grid-template-columns: repeat(2, 1fr); }
+  .search-form > .swap { align-self: end; justify-self: start; width: 42px; height: 42px; }
+  .search-form > .search-submit { width: 100%; padding: 13px 20px; font-size: 14px; }
+
+  /* General section spacing */
+  section.block { padding: 72px 0; }
+  section.block.compact { padding: 56px 0; }
+  .section-head { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 24px; }
+  .section-head h2 { font-size: 24px; }
+  .section-head .desc { font-size: 14px; }
+
+  /* Region tabs scroll horizontally on mobile instead of wrapping */
+  .region-tabs {
+    display: flex; flex-wrap: nowrap;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    max-width: 100%;
+  }
+  .region-tabs::-webkit-scrollbar { display: none; }
+  .region-tabs button { flex: 0 0 auto; white-space: nowrap; padding: 9px 16px; font-size: 13px; }
+
+  /* Pillars — tighter padding & mini size */
+  .pillar { min-height: 200px; padding: 26px; }
+  .pillar h3 { font-size: 20px; }
+  .pillar p  { font-size: 13.5px; margin-bottom: 16px; }
+
+  /* News section */
+  .news-item {
+    grid-template-columns: 1fr; row-gap: 6px; padding: 16px 0;
+  }
+  .news-item .news-tag { font-size: 10.5px; }
+
+  /* Tickets — single column on narrow phones */
+  .ticket-grid { grid-template-columns: 1fr; }
+
+  /* Safety card */
+  .safety { padding: 32px 22px; }
+  .safety h2 { font-size: 22px; }
+  .safety p  { font-size: 14px; }
+  .safety-stats { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .safety-stats .n { font-size: 26px; }
+
+  /* Footer: stack single column */
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; gap: 8px; align-items: flex-start; }
+
   .fab { display: inline-flex; }
-  .search-panel { margin-top: -60px; }
+}
+
+/* Extra-narrow (≤ 380px) — iPhone SE class */
+@media (max-width: 380px) {
+  .container { padding-inline: 14px; }
+  .hero h1  { font-size: 30px; }
+  .section-head h2 { font-size: 22px; }
+  .route-card { padding: 16px; }
+  .ticket-card { padding: 18px; }
+  .hero-stats { grid-template-columns: repeat(3, 1fr); }
+  .hero-stats .num { font-size: 20px; }
+  .hero-stats .lbl { font-size: 10.5px; }
+  .search-panel .tabs button { padding: 7px 12px; }
 }
 </style>
 </head>
